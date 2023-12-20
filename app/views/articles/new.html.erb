@@ -1,26 +1,26 @@
 <%= form_with(model: @article, local: true) do |form| %>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label :title, class: 'mui-text-label' %>
+    <%= form.text_field :title, class: 'mui-text-field' %>
   </div>
+
   <% if @article.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@article.errors.count, "error")%> prohibited this article from being saved:</h2>
+    <div id="error_explanation" class="mui-error">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <ul>
-    <% @article.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end  %>
+  <div class="field">
+    <%= form.label :body, class: 'mui-text-label' %>
+    <%= form.text_area :body, class: 'mui-text-field' %>
+  </div>
 
-<div class="field">
-  <%= form.label :body %>
-  <%= form.text_area :body %>
-</div>
-
-<div class="actions">
-  <%= form.submit %>
-</div>
+  <div class="actions">
+    <%= form.submit 'Submit', class: 'mui-btn' %>
+  </div>
 <% end %>

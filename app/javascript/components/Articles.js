@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 function Articles() {
     const [articles, setArticles] = useState([]);
@@ -20,19 +23,26 @@ function Articles() {
     }, []);
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <Typography color="error">Error: {error.message}</Typography>;
     }
 
     return (
         <div>
             {articles.map(article => (
-                <div key={article.id}>
-                    <h2>{article.title}</h2>
-                    <p>{article.body}</p>
-                </div>
+                <Card key={article.id} style={{ marginBottom: '20px' }}>
+                    <CardContent>
+                        <Typography variant="h5" component="h2">
+                            {article.title}
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            {article.body}
+                        </Typography>
+                    </CardContent>
+                </Card>
             ))}
         </div>
     );
 }
+
 
 export default Articles;
